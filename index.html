@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youngbloods — Run Together</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800&family=DM+Serif+Display&display=swap"
+    rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'OCR A Std';
+      src: local('OCR A Std'), local('OCRAStd');
+    }
+
+    @font-face {
+      font-family: 'Janeiro';
+      src: local('Janeiro');
+    }
+
+    @font-face {
+      font-family: 'Alte Haas Grotesk';
+      src: local('Alte Haas Grotesk'), local('AlteHaasGrotesk');
+    }
+
+    @font-face {
+      font-family: 'Relationship of Melodrame';
+      src: local('Relationship of Melodrame'), local('RelationshipofMelodrame');
+    }
+
+    :root {
+      --white: #F8F8F6;
+      --black: #0D0D0D;
+      --grey: #7A7A7A;
+      --light-grey: #E2E2DE;
+      --mid-grey: #C4C4C0;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-mono: 'OCR A Std', monospace;
+      --font-heading: 'Alte Haas Grotesk', sans-serif;
+    }
+
+    .hero-left h1 {
+      font-style: italic;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2.5rem;
+      height: 60px;
+      background: rgba(248, 248, 246, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      display: block;
+      filter: invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--black);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--grey);
+    }
+
+    .nav-cta {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border: 1px solid var(--black);
+      padding: 0.5rem 1.2rem;
+      transition: all 0.25s;
+    }
+
+    .nav-cta:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('ThuleHiace.jpg') 50% 70%/cover no-repeat;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13, 13, 13, 0.1) 0%, rgba(13, 13, 13, 0.0) 40%, rgba(13, 13, 13, 0.65) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 2.5rem 3.5rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .hero-left h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3.5rem, 7.5vw, 7rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      white-space: nowrap;
+    }
+
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(248, 248, 246, 0.65);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .hero-supported {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(248, 248, 246, 0.38);
+      margin-top: 0.6rem;
+      display: block;
+    }
+
+    .hero-supported span {
+      color: rgba(248, 248, 246, 0.6);
+    }
+
+    .hero-right {
+      text-align: right;
+      padding-bottom: 0.5rem;
+    }
+
+    .hero-right p {
+      font-size: 0.95rem;
+      color: rgba(248, 248, 246, 0.75);
+      max-width: 320px;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      text-align: right;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--white);
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      transition: all 0.25s;
+    }
+
+    .btn-primary:hover {
+      background: var(--light-grey);
+    }
+
+    .btn-outline-white {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(248, 248, 246, 0.5);
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      transition: all 0.25s;
+      margin-left: 1rem;
+    }
+
+    .btn-outline-white:hover {
+      border-color: var(--white);
+      background: rgba(248, 248, 246, 0.1);
+    }
+
+    /* ---- MARQUEE ---- */
+    .marquee-bar {
+      background: var(--black);
+      overflow: hidden;
+      padding: 0.9rem 0;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-track span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0 2.5rem;
+      color: rgba(248, 248, 246, 0.55);
+    }
+
+    .marquee-track span.dot {
+      color: rgba(248, 248, 246, 0.2);
+      padding: 0;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ---- LABELS ---- */
+    .label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .label-num {
+      color: var(--mid-grey);
+      margin-right: 0.8rem;
+    }
+
+    h2.display {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+
+    /* ---- ABOUT ---- */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+    }
+
+    .about-image {
+      background: url('group2.jpg') center/cover no-repeat;
+      min-height: 560px;
+    }
+
+    .about-text {
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--white);
+    }
+
+    .about-intro {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      color: var(--black);
+    }
+
+    .about-text p {
+      font-size: 0.97rem;
+      color: var(--grey);
+      line-height: 1.82;
+      font-weight: 300;
+      max-width: 440px;
+      margin-bottom: 1.4rem;
+    }
+
+    .about-text p:last-of-type {
+      margin-bottom: 2.5rem;
+    }
+
+    .about-women-note {
+      font-size: 0.88rem;
+      color: var(--mid-grey);
+      line-height: 1.75;
+      font-weight: 300;
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--light-grey);
+      font-style: italic;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .stat h3 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .stat p {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 0.3rem;
+    }
+
+    /* ---- ACHIEVEMENTS ---- */
+    .achievements {
+      background: var(--black);
+      padding: 6rem 2.5rem;
+    }
+
+    .achievements-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(248, 248, 246, 0.1);
+    }
+
+    .achievements-header .label {
+      color: rgba(248, 248, 246, 0.35);
+    }
+
+    .achievements-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--white);
+    }
+
+    .achievement-row {
+      display: grid;
+      grid-template-columns: 2fr 3fr 1.5fr;
+      align-items: center;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(248, 248, 246, 0.08);
+      gap: 2rem;
+      transition: padding 0.2s;
+    }
+
+    .achievement-row:hover {
+      padding-left: 0.75rem;
+    }
+
+    .achievement-name {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(248, 248, 246, 0.4);
+    }
+
+    .achievement-desc {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(248, 248, 246, 0.85);
+      line-height: 1.5;
+    }
+
+    .achievement-mark {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: right;
+      letter-spacing: -0.02em;
+    }
+
+    /* ---- EDITORIAL ---- */
+    .editorial {
+      background: var(--black);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 70vh;
+      border-top: 1px solid rgba(248, 248, 246, 0.08);
+    }
+
+    .editorial-text {
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .editorial-text .label {
+      color: rgba(248, 248, 246, 0.35);
+    }
+
+    .editorial-text h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .editorial-text p {
+      font-size: 0.95rem;
+      color: rgba(248, 248, 246, 0.55);
+      line-height: 1.82;
+      font-weight: 300;
+      max-width: 400px;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-white {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--white);
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      transition: all 0.25s;
+      align-self: flex-start;
+    }
+
+    .btn-white:hover {
+      background: var(--light-grey);
+    }
+
+    .editorial-image {
+      background: url('teaser1.jpg') center/cover no-repeat;
+    }
+
+    /* ---- TEAM ---- */
+    .team-section {
+      padding: 7rem 2.5rem;
+      background: var(--white);
+    }
+
+    .team-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .team-header a {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    .team-photo-full {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .team-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--light-grey);
+      margin-bottom: 3rem;
+    }
+
+    .team-caption p {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .strava-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border: 1px solid var(--black);
+      padding: 0.5rem 1.1rem;
+      transition: all 0.25s;
+    }
+
+    .strava-pill:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .strava-pill svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ---- MEMBERS GRID ---- */
+    .members-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--light-grey);
+    }
+
+    .member-card {
+      padding: 1.5rem;
+      border-right: 1px solid var(--light-grey);
+      text-decoration: none;
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      transition: background 0.25s;
+    }
+
+    .member-card:nth-child(4n) {
+      border-right: none;
+    }
+
+    .member-card:nth-child(n+5) {
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .member-card:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .member-card:hover .member-handle {
+      color: rgba(248, 248, 246, 0.45);
+    }
+
+    .member-card:hover .member-arrow {
+      opacity: 1;
+    }
+
+    .member-name {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .member-handle {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      color: var(--grey);
+      transition: color 0.25s;
+    }
+
+    .member-arrow {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      margin-top: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.25s;
+      color: rgba(248, 248, 246, 0.6);
+    }
+
+    /* ---- CONNECT ---- */
+    .connect {
+      padding: 7rem 2.5rem;
+      background: var(--white);
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .connect-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--light-grey);
+    }
+
+    .link-card {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--light-grey);
+      text-decoration: none;
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.25s;
+    }
+
+    .link-card:last-child {
+      border-right: none;
+    }
+
+    .link-card:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .link-card:hover .link-card-label,
+    .link-card:hover .link-card-desc {
+      color: rgba(248, 248, 246, 0.45);
+    }
+
+    .link-card:hover .link-card-num {
+      color: rgba(248, 248, 246, 0.2);
+    }
+
+    .link-card:hover .link-arrow {
+      opacity: 1;
+      color: rgba(248, 248, 246, 0.6);
+    }
+
+    .link-card-num {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--mid-grey);
+    }
+
+    .link-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: auto;
+    }
+
+    .link-card-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .link-card-desc {
+      font-size: 0.85rem;
+      color: var(--grey);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .link-arrow {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      margin-top: 0.5rem;
+      transition: opacity 0.25s;
+    }
+
+    .connect-note {
+      margin-top: 2rem;
+      padding: 1.5rem 2rem;
+      border: 1px solid var(--light-grey);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .connect-note p {
+      font-size: 0.88rem;
+      color: var(--grey);
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 600px;
+    }
+
+    .connect-note p strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .connect-note-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      white-space: nowrap;
+    }
+
+    /* ---- DOCUMENTARY ---- */
+    .documentary {
+      background: var(--black);
+      padding: 7rem 2.5rem;
+    }
+
+    .documentary-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(248, 248, 246, 0.1);
+      padding-bottom: 1.5rem;
+    }
+
+    .documentary-header .label {
+      color: rgba(248, 248, 246, 0.35);
+    }
+
+    .documentary-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--white);
+    }
+
+    .video-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .video-thumb:hover img {
+      transform: scale(1.02);
+    }
+
+    .video-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 13, 13, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .video-thumb:hover .video-thumb-overlay {
+      background: rgba(13, 13, 13, 0.2);
+    }
+
+    .play-btn {
+      width: 64px;
+      height: 64px;
+      border: 1px solid rgba(248, 248, 246, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .video-thumb:hover .play-btn {
+      background: var(--white);
+    }
+
+    .video-thumb:hover .play-btn svg {
+      fill: var(--black);
+    }
+
+    .play-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--white);
+      margin-left: 2px;
+      transition: fill 0.3s;
+    }
+
+    /* ---- SHOP ---- */
+    .shop {
+      padding: 7rem 2.5rem;
+      background: var(--white);
+    }
+
+    .shop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .shop-header a {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    .shop-card {
+      background: var(--white);
+      text-decoration: none;
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shop-card-image-wrap {
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+
+    .shop-card-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .shop-card:hover .shop-card-image-wrap img {
+      transform: scale(1.03);
+    }
+
+    .shop-card-image {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ece9e4, #ddd9d3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      transition: transform 0.5s ease;
+    }
+
+    .shop-card:hover .shop-card-image {
+      transform: scale(1.03);
+    }
+
+    .shop-card-info {
+      padding: 1.25rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .shop-card-info .collab {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 0.4rem;
+    }
+
+    .shop-card-info h3 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .shop-card-info .price {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--grey);
+    }
+
+    .shop-card-info .price.not-for-sale {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    .shop-card-info .price.coming-soon {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      font-style: italic;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 4rem 2.5rem 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(248, 248, 246, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand img {
+      height: 36px;
+      width: auto;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: rgba(248, 248, 246, 0.4);
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 260px;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-partner {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(248, 248, 246, 0.2);
+    }
+
+    .footer-partner span {
+      color: rgba(248, 248, 246, 0.45);
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248, 248, 246, 0.3);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-col ul a {
+      color: rgba(248, 248, 246, 0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      color: rgba(248, 248, 246, 0.2);
+      text-transform: uppercase;
+    }
+
+    /* ---- REVEAL ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 1.5rem;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 0 1.5rem 3rem;
+      }
+
+      .hero-left h1 {
+        font-size: clamp(3.5rem, 14vw, 6rem);
+        white-space: normal;
+      }
+
+      .hero-right {
+        text-align: left;
+      }
+
+      .hero-right p {
+        text-align: left;
+      }
+
+      .about,
+      .editorial {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image,
+      .editorial-image {
+        min-height: 320px;
+      }
+
+      .about-text,
+      .editorial-text {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .team-section,
+      .connect,
+      .documentary,
+      .shop,
+      .achievements {
+        padding: 4rem 1.5rem;
+      }
+
+      .achievement-row {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+
+      .achievement-mark {
+        text-align: left;
+        font-size: 1.1rem;
+      }
+
+      .members-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .member-card:nth-child(4n) {
+        border-right: 1px solid var(--light-grey);
+      }
+
+      .member-card:nth-child(2n) {
+        border-right: none;
+      }
+
+      .member-card:nth-child(n+3) {
+        border-top: 1px solid var(--light-grey);
+      }
+
+      .links-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .link-card {
+        border-right: 1px solid var(--light-grey);
+      }
+
+      .link-card:nth-child(2n) {
+        border-right: none;
+      }
+
+      .connect-note {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .shop-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+
+      .team-caption {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <img src="YB_WHITE_logo.png" alt="Youngbloods">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#connect">Connect</a></li>
+      <li><a href="#film">Film</a></li>
+      <li><a href="#shop">Shop</a></li>
+    </ul>
+    <a href="#connect" class="nav-cta">Run With Us</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <span class="hero-tag">Jakarta, Indonesia — Est. 2025</span>
+        <h1>Youngbloods</h1>
+        <div>
+          <a href="#about" class="btn-primary">Our Story</a>
+          <a href="#team" class="btn-outline-white">The Crew</a>
+        </div>
+        <span class="hero-supported">Semi-supported by <span>Running Rage</span></span>
+      </div>
+      <div class="hero-right">
+        <p>A tight-knit team of young distance runners pursuing big goals, one race at a time.</p>
+        <a href="https://strava.app.link/ldup3tgTU1b" target="_blank" class="strava-pill" style="float:right;">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" />
+          </svg>
+          Strava Club
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>Young. Driven. Raging.</span><span class="dot">·</span>
+      <span>Based in Jakarta</span><span class="dot">·</span>
+      <span>More than just a running team.</span><span class="dot">·</span>
+      <span>Spreading love for the art of endurance sports.</span><span class="dot">·</span>
+      <span>Young. Driven. Raging.</span><span class="dot">·</span>
+      <span>Based in Jakarta</span><span class="dot">·</span>
+      <span>More than just a running team.</span><span class="dot">·</span>
+      <span>Spreading love for the art of endurance sports.</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-image reveal"></div>
+    <div class="about-text reveal">
+      <span class="label"><span class="label-num">01</span>Who We Are</span>
+      <div class="about-intro">Young, driven, and hungry.</div>
+      <h2 class="display">Built on more<br>than miles.</h2>
+      <p>Youngbloods is a tight-knit group of young distance runners based in Indonesia. We are a family-oriented team
+        that brings together members from different backgrounds and cultures. We train, race, and genuinely look out for
+        each other. More than just running, we are building something that raises awareness and inspires the next
+        generation of Indonesian runners.</p>
+      <p class="about-women-note">Our team also includes women members who are part of the Youngbloods family —
+        representing the crew across upcoming races and projects.</p>
+      <div class="stat-row">
+        <div class="stat">
+          <h3>8+</h3>
+          <p>Members</p>
+        </div>
+        <div class="stat">
+          <h3>2025</h3>
+          <p>Est.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="achievements" id="achievements">
+    <div class="achievements-header reveal">
+      <div>
+        <span class="label"><span class="label-num" style="color:rgba(248,248,246,0.18);">02</span>What We've
+          Done</span>
+        <h2>Results that speak.</h2>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="achievement-row">
+        <div class="achievement-name">Osman</div>
+        <div class="achievement-desc">Full Marathon — Two sub-3 hour finishes in a single year</div>
+        <div class="achievement-mark">2:57 / 2:55</div>
+      </div>
+      <div class="achievement-row">
+        <div class="achievement-name">Osman</div>
+        <div class="achievement-desc">Half Marathon — 3:47/km average pace</div>
+        <div class="achievement-mark">1:19</div>
+      </div>
+      <div class="achievement-row">
+        <div class="achievement-name">Khafarell, Kenzie, Gathan</div>
+        <div class="achievement-desc">Half Marathon — All three under the 1:30 barrier</div>
+        <div class="achievement-mark">Sub 1:30</div>
+      </div>
+      <div class="achievement-row">
+        <div class="achievement-name">Khafarell</div>
+        <div class="achievement-desc">10K Personal Best</div>
+        <div class="achievement-mark">38:43</div>
+      </div>
+      <div class="achievement-row">
+        <div class="achievement-name">5 Members</div>
+        <div class="achievement-desc">Relay of the Gods — 165KM at 4:53/km average</div>
+        <div class="achievement-mark">165 KM</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL -->
+  <section class="editorial">
+    <div class="editorial-text reveal">
+      <span class="label"><span class="label-num" style="color:rgba(248,248,246,0.18);">03</span>The Mindset</span>
+      <h2>We train, we spread love, we aim higher.</h2>
+      <p>Every rep, every race, every project, and every collaboration has a purpose. Youngbloods are here not just to
+        participate — but to compete, to represent Indonesia for the long term, and to prove that recreational runners
+        from Jakarta can hold their own on the world stage.</p>
+      <a href="https://youtu.be/IdIRCvjLrK4?si=_NI7UXRnftyQ7bgY" target="_blank" class="btn-white">Watch Our Film</a>
+    </div>
+    <div class="editorial-image reveal"></div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team-section" id="team">
+    <div class="team-header reveal">
+      <div>
+        <span class="label"><span class="label-num">04</span>The Crew</span>
+        <h2 class="display">We run together.</h2>
+      </div>
+      <a href="https://strava.app.link/ldup3tgTU1b" target="_blank">View Our Progress</a>
+    </div>
+    <img src="loncat.jpg" alt="Youngbloods team" class="team-photo-full reveal">
+    <div class="team-caption reveal">
+      <p>Youngbloods — Jakarta, Indonesia — 2025</p>
+      <a href="https://strava.app.link/ldup3tgTU1b" target="_blank" class="strava-pill">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" />
+        </svg>
+        Join Strava Club
+      </a>
+    </div>
+
+    <!-- MEMBERS GRID -->
+    <span class="members-label reveal">The Members — Follow Along</span>
+    <div class="members-grid reveal">
+      <a href="https://www.instagram.com/khafarrell/" target="_blank" class="member-card">
+        <div class="member-name">Khafarell</div>
+        <div class="member-handle">@khafarell</div>
+        <div class="member-arrow">Instagram →</div>
+      </a>
+      <a href="https://www.instagram.com/osmanarturoo/" target="_blank" class="member-card">
+        <div class="member-name">Osman</div>
+        <div class="member-handle">@osmanarturoo</div>
+        <div class="member-arrow">Instagram →</div>
+      </a>
+      <a href="https://www.instagram.com/nabilmuniif/" target="_blank" class="member-card">
+        <div class="member-name">Nabil</div>
+        <div class="member-handle">@nabilmuniif</div>
+        <div class="member-arrow">Instagram →</div>
+      </a>
+      <a href="https://www.instagram.com/ranadyatantra/" target="_blank" class="member-card">
+        <div class="member-name">Ranadya</div>
+        <div class="member-handle">@ranadyatantra</div>
+        <div class="member-arrow">Instagram →</div>
+      </a>
+      <a href="https://www.instagram.com/aqshamln/" target="_blank" class="member-card">
+        <div class="member-name">Aqsha</div>
+        <div class="member-handle">@aqshamln</div>
+        <div class="member-arrow">Instagram →</div>
+      </a>
+      <a href="https://www.instagram.com/kenzienabiel/" target="_blank" class="member-card">
+        <div class="member-name">Kenzie</div>
+        <div class="member-handle">@kenzienabiel</div>
+        <div class="member-arrow">Instagram →</div>
+      </a>
+      <a href="https://www.instagram.com/gathann_/" target="_blank" class="member-card">
+        <div class="member-name">Gathan</div>
+        <div class="member-handle">@gathann_</div>
+        <div class="member-arrow">Instagram →</div>
+      </a>
+      <a href="https://www.instagram.com/keenanadhi/" target="_blank" class="member-card">
+        <div class="member-name">Keenan</div>
+        <div class="member-handle">@keenanadhi</div>
+        <div class="member-arrow">Instagram →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section class="connect" id="connect">
+    <div class="connect-header reveal">
+      <div>
+        <span class="label"><span class="label-num">05</span>Connect</span>
+        <h2 class="display">Stay in the loop.</h2>
+      </div>
+    </div>
+    <div class="links-grid reveal">
+      <a href="https://strava.app.link/ldup3tgTU1b" target="_blank" class="link-card">
+        <div class="link-card-num">01</div>
+        <div class="link-card-label">Strava</div>
+        <h3>Club</h3>
+        <p class="link-card-desc">Follow our runs, track our weekly mileage, and join the crew on the road.</p>
+        <div class="link-arrow">Follow →</div>
+      </a>
+      <a href="https://www.instagram.com/____youngbloods/" target="_blank" class="link-card">
+        <div class="link-card-num">02</div>
+        <div class="link-card-label">Instagram</div>
+        <h3>Feed</h3>
+        <p class="link-card-desc">See our daily life, training sessions, and upcoming projects.</p>
+        <div class="link-arrow">Follow →</div>
+      </a>
+      <a href="#team" class="link-card">
+        <div class="link-card-num">03</div>
+        <div class="link-card-label">Members</div>
+        <h3>The Eight</h3>
+        <p class="link-card-desc">Follow each member individually and see the journey up close.</p>
+        <div class="link-arrow">Explore →</div>
+      </a>
+      <a href="https://youtu.be/IdIRCvjLrK4?si=_NI7UXRnftyQ7bgY" target="_blank" class="link-card">
+        <div class="link-card-num">04</div>
+        <div class="link-card-label">Documentary</div>
+        <h3>The Film</h3>
+        <p class="link-card-desc">Watch our story — from the first group run to racing the biggest stages.</p>
+        <div class="link-arrow">Watch →</div>
+      </a>
+    </div>
+    <div class="connect-note reveal">
+      <p><strong>Youngbloods is a team, not an open community.</strong> We are selective about who we bring in — but we
+        are always open to running and training alongside us. If you want to come find us on the road, you are more than
+        welcome.</p>
+      <div class="connect-note-label">Open to run with us</div>
+    </div>
+  </section>
+
+  <!-- DOCUMENTARY -->
+  <section class="documentary" id="film">
+    <div class="documentary-header reveal">
+      <div>
+        <span class="label"><span class="label-num" style="color:rgba(248,248,246,0.18)">06</span>The Film</span>
+        <h2>Our story, on screen.</h2>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/watch?v=IdIRCvjLrK4" target="_blank" class="video-thumb reveal">
+      <img src="https://img.youtube.com/vi/IdIRCvjLrK4/maxresdefault.jpg" alt="Youngbloods Documentary">
+      <div class="video-thumb-overlay">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <!-- SHOP -->
+  <section class="shop" id="shop">
+    <div class="shop-header reveal">
+      <div>
+        <span class="label"><span class="label-num">07</span>Merch & Collabs</span>
+        <h2 class="display">Rep the crew.</h2>
+      </div>
+      <a href="https://machinalibera.cc/products/one-track-mind-frontier-cap-otm-x-young-bloods-black-reflective-grey"
+        target="_blank">View All</a>
+    </div>
+    <div class="shop-grid reveal">
+      <a href="https://machinalibera.cc/products/one-track-mind-frontier-cap-otm-x-young-bloods-black-reflective-grey"
+        target="_blank" class="shop-card">
+        <div class="shop-card-image-wrap">
+          <img src="gatanotm.jpg" alt="Frontier Cap">
+        </div>
+        <div class="shop-card-info">
+          <div class="collab">Youngbloods x One Track Mind</div>
+          <h3>Frontier Cap</h3>
+          <div class="price">Rp 599.000</div>
+        </div>
+      </a>
+      <a href="#" class="shop-card">
+        <div class="shop-card-image-wrap">
+          <img src="1.jpg" alt="Space Odyssey Collection">
+        </div>
+        <div class="shop-card-info">
+          <div class="collab">Youngbloods x Fieldway</div>
+          <h3>Space Odyssey Collection</h3>
+          <div class="price not-for-sale">Not for Sale</div>
+        </div>
+      </a>
+      <a href="#" class="shop-card">
+        <div class="shop-card-image-wrap">
+          <div class="shop-card-image"
+            style="background: linear-gradient(135deg, #1a1a1a, #2d2d2d); color: rgba(248,248,246,0.2);">Coming Soon
+          </div>
+        </div>
+        <div class="shop-card-info">
+          <div class="collab">Incoming</div>
+          <h3>New Merch & Products</h3>
+          <div class="price coming-soon">Stay tuned</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="YB_WHITE_logo.png" alt="Youngbloods">
+        <p>A team of young distance runners from Jakarta, Indonesia. Building something real, one race at a time.</p>
+        <div class="footer-partner">Semi-supported by <span>Running Rage</span></div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#film">Documentary</a></li>
+          <li><a href="#shop">Shop</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="https://strava.app.link/ldup3tgTU1b" target="_blank">Strava</a></li>
+          <li><a href="https://www.instagram.com/____youngbloods/" target="_blank">Instagram</a></li>
+          <li><a href="https://youtu.be/IdIRCvjLrK4?si=_NI7UXRnftyQ7bgY" target="_blank">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Youngbloods. All rights reserved.</p>
+      <p>Jakarta, Indonesia</p>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
